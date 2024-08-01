@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODoList</title>
+  </head>
+  <style>
+    body {
+      text-align: center;
+    }
+    ul li {
+      list-style: none;
+      font-size: 1.7rem;
+      margin-top: 60px;
+    }
+  </style>
+  <body>
+    <h1>To-Do List</h1>
+    <input type="text" placeholder="Write Your list" />
+    <button id="add">Add</button>
+    <ul>
+      <li>item 1</li>
+    </ul>
+
+    <script>
+      const input = document.querySelector("input");
+      const addbutton = document.getElementById("add");
+      let list = document.querySelector("ul");
+
+      list.innerHTML = "";
+
+      //ADD list
+      addbutton.addEventListener("click", function () {
+        let li = document.createElement("li");
+        li.textContent = input.value;
+
+        const clearBtn = document.createElement("button");
+        clearBtn.textContent = "clear";
+
+        const doneBtn = document.createElement("button");
+        doneBtn.textContent = "done";
+
+        if (input.value !== "") {
+          list.appendChild(li);
+          list.appendChild(clearBtn);
+          list.appendChild(doneBtn);
+          input.value = "";
+        } else {
+          alert("Please enter a task");
+        }
+
+        //clear btn
+        clearBtn.addEventListener("click", function () {
+          list.removeChild(li);
+          list.removeChild(clearBtn);
+          list.removeChild(doneBtn);
+        });
+        //taskdone btn
+        doneBtn.addEventListener("click", function () {
+          li.style.textDecoration = " line-through";
+        });
+      });
+    </script>
+  </body>
+</html>
